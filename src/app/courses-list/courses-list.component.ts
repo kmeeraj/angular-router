@@ -11,20 +11,17 @@ export class CoursesListComponent implements OnInit {
   @Input()
   courses = [];
 
+
   constructor(private router: Router, private route: ActivatedRoute) {
 
   }
 
-  openCourse(course, $event) {
-    this.router.navigateByUrl(`/courses/${course.id}`);
-    $event.stopPropagation();
+  openCourse(course) {
+    // this.router.navigate([course.id], {relativeTo: this.route});
+    this.router.navigate(['courses', course.id]);
+    // this.router.navigateByUrl(`/courses/${course.id}`);
   }
 
-  showCoursePlayList(course) {
-    this.router.navigateByUrl(
-      `/courses(playlist:playlist;description=${course.description})`
-    );
-  }
 
   ngOnInit() {
   }

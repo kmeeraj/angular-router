@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {lessonsData} from '../../data/lessonsData';
 import {Subscription} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-course-details',
@@ -18,22 +18,12 @@ export class CourseDetailsComponent implements OnInit {
   dirty = false;
 
 
-  constructor(route: ActivatedRoute) {
-    this.paramsSub = route.params.subscribe(
-      params => {
-        this.courseId = parseInt(params.id, 7);
-        this.dirty = false;
-      }
+  constructor(router: Router, route: ActivatedRoute) {
+    console.log('Building course details component');
+    // this.courseId = parseInt(route.snapshot.params['id']);
+    route.params.subscribe(
+      params => this.courseId = parseInt(route.snapshot.params['id'])
     );
-
-    this.queryParamsSub = route.queryParams.subscribe(
-      params => {
-        this.description = params['description'];
-      }
-    );
-
-    console.log('observers count',
-      route.queryParams['observers'].length);
   }
 
   previous() {
@@ -45,10 +35,6 @@ export class CourseDetailsComponent implements OnInit {
   }
 
 
-  ngOnDestroy() {
-    this.paramsSub.unsubscribe();
-    this.queryParamsSub.unsubscribe();
-  }
 
   ngOnInit() {
   }
