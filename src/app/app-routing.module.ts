@@ -5,6 +5,7 @@ import {AboutComponent} from './about/about.component';
 import {CoursesComponent} from './courses/courses.component';
 import {AlllessonsComponent} from './alllessons/alllessons.component';
 import {CourseDetailsComponent} from './course-details/course-details.component';
+import {courseRouterConfig} from './courses-routing-config';
 
 const indexRoute: Route = {
   path: '',
@@ -24,14 +25,7 @@ const routes: Routes = [
     path: 'about',
     component: AboutComponent
   },
-  {
-    path: 'courses',
-    component: CoursesComponent
-  },
-  {
-    path: 'courses/:id',
-    component: CourseDetailsComponent
-  },
+  ...courseRouterConfig,
   {
     path: 'lessons',
     component: AlllessonsComponent
