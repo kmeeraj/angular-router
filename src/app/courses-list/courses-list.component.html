@@ -1,0 +1,15 @@
+<table class="app-courses-list card card-strong">
+  <tr class="course-summary" *ngFor="let course of courses"
+      (click)="showCoursePlayList(course)">
+    <td>
+      <img class="lesson-logo"
+           src="https://material.angularjs.org/latest/img/icons/angular-logo.svg">
+    </td>
+    <td class="description">
+      {{course.description}}
+    </td>
+    <td>
+      <button (click)="openCourse(course, $event)">View</button>
+    </td>
+  </tr>
+</table>
